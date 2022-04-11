@@ -1,0 +1,7 @@
+.service-container {
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+.service-description {
+    padding: 5px;
+}
