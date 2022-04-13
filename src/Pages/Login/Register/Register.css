@@ -1,0 +1,14 @@
+.register-from{
+    margin: 0 auto;
+    width: 50%;
+}
+
+.register-from input{
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+

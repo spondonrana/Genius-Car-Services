@@ -2,6 +2,10 @@
     border: 1px solid gray;
     border-radius: 10px;
 }
+
+.service-container img{
+    border-radius: 10px;
+}
 .service-description {
-    padding: 5px;
+    margin: 10px 20px;
 }

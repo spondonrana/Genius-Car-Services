@@ -1,0 +1,8 @@
+
+.cover {
+    background-image: url("../../../img/404.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    opacity: 0.8;
+}
