@@ -6,7 +6,12 @@ import {
 } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "./SocialLogin/SocialLogin";
+
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -15,13 +20,16 @@ const Login = () => {
   const location = useLocation();
 
   let from = location.state?.from?.pathname || "/";
-  const errorElement = "";
+  let errorElement;
 
-  const [signInWithEmailAndPassword, user, error] =
+  const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
+  if (loading) {
+    return <Loading></Loading>;
+  }
   if (user) {
     navigate(from, { replace: true });
   }
@@ -46,8 +54,12 @@ const Login = () => {
 
   const navigateResetPass = async () => {
     const email = emailRef.current.value;
-    await sendPasswordResetEmail(email);
-    alert("Sent email");
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast("Sent email");
+    } else {
+      toast("Please Enter Your Email Address");
+    }
   };
   return (
     <div className="container w-50 mx-auto">
@@ -78,7 +90,7 @@ const Login = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Submit
+          Login
         </Button>
       </Form>
       {errorElement}
@@ -104,6 +116,7 @@ const Login = () => {
         </span>
       </p>
       <SocialLogin></SocialLogin>
+      <ToastContainer />
     </div>
   );
 };
